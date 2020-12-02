@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 class Product extends Component {
     // state = {  
     //    // name:['ahmed','yasser','Arwa'],
@@ -33,14 +34,15 @@ class Product extends Component {
         return (
              <div className='row'>
        <div className="col-1">
-        <span>{this.props.product.name}</span>
+        <span>
+            <Link to={`/products/${this.props.product.id}`}>{this.props.product.name}</Link></span>
 
        </div>
        <div className="col">
        <span className={this.getclasses()}>{this.props.product.count}</span>
         <button onClick={() =>this.props.onIncrement(this.props.product)} className="btn btn-primary btn-sm">
             +</button>
-            <span onClick={() =>this.props.onDelete(this.props.product)}>
+            <span style={{cursor:'pointer'}} onClick={() =>this.props.onDelete(this.props.product)}>
             <i className="fas fa-trash m-2"></i>
             </span>
        </div>

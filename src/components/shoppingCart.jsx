@@ -4,14 +4,17 @@ import Product from './product';
 class ShoppingCart extends Component {
 
 
+
     render() { 
+    const{products,onReset,onDelete,onIncrement} = this.props;
+
         return ( 
             <React.Fragment>
         <h1>Shopping Cart</h1>
-        <button onClick={this.props.onReset} className="btn btn-secondary btn-sm m-2">Reset</button>
-         {this.props.products.map(product =>(
-         <Product key={product.id} onDelete={this.props.onDelete}
-         onIncrement={this.props.onIncrement}
+        <button onClick={onReset} className="btn btn-secondary btn-sm m-2">Reset</button>
+         {products.map(product =>(
+         <Product key={product.id} onDelete={onDelete}
+         onIncrement={onIncrement}
          product={product}/   >
         
          ))}

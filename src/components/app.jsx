@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import NavBar from './navbar';
 import ShoppingCart from './shoppingCart';
+import {Route , Switch ,Redirect} from  'react-router-dom';
+import About from './about';
+import Contact from './contact';
+import Home from './home';
+import ProductDetails from './productDetails';
+import NotFound from './notFound';
 
 class App extends Component {
     state = { 
@@ -49,11 +55,34 @@ class App extends Component {
             <React.Fragment>
                 <NavBar productsCount = {this.state.products.filter(p => p.count>0).length}/>
                 <main className="container">
-                    <ShoppingCart products={this.state.products}
+                    <Switch>       
+                     <Route path='/products/:id/:name?' render={(props) => 
+                        <ProductDetails products={this.state.products}
+                        {...props}/>}/>              
+                    <Route path='/cart' render= {(props) => 
+                    <ShoppingCart 
+                    products={this.state.products}
+                    onIncrement={this.handleIncrement}
+                    onDelete ={this.handleDeltet}
+                    onReset={this.handleReset} 
+                    {...props}
+                    />
+                    }
+                    />
+
+                    <Route path='/about' component={About}/>    
+                    <Route path='/notFound' component={NotFound}/>
+                    <Route path='/contact' component={Contact}/>
+                    <Route path='/home'   component={Home}/>
+                    <Redirect from='/' to='/home'/>
+                    <Redirect to='/notFound'/>
+                    </Switch>
+
+                    {/* <ShoppingCart products={this.state.products}
                     onIncrement={this.handleIncrement}
                     onDelete ={this.handleDeltet}
                     onReset={this.handleReset}
-                    />
+                    /> */}
                 </main>
             </React.Fragment>
          );
