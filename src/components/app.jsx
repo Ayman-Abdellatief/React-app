@@ -2,22 +2,35 @@ import React, { Component } from 'react';
 import NavBar from './navbar';
 import ShoppingCart from './shoppingCart';
 import {Route , Switch ,Redirect} from  'react-router-dom';
-import About from './about';
-import Contact from './contact';
-import Home from './home';
 import ProductDetails from './productDetails';
 import NotFound from './notFound';
+import Menu from './menu';
 
 class App extends Component {
     state = { 
         products:[
-                 {id:1,name:'Burger',count:2},
-                 {id:2,name:'Frise',count:0},
-                 {id:3,name:'Cola',count:3}
+                 {id:1,name:'Burger',price:30,
+                 count:0,isInCart:false},
+                 {id:2,name:'Frise',price:20,
+                 count:0,isInCart:false},
+                 {id:3,name:'Cola',price:10,
+                 count:0,isInCart:false}
         ]
         
              };
         
+             handleInCartChange = product =>{
+                 //clone
+                 const products = [...this.state.products];
+                 const index = products.indexOf(product);
+                 products[index] ={...products[index]};
+                 //Edit
+                 products[index].isInCart = !products[index].isInCart;
+                 // Set Satate
+                 this.setState({products});
+                     
+
+             };
              handleDeltet = (product) => {
                 //clone  
                 //Edit
@@ -61,19 +74,25 @@ class App extends Component {
                         {...props}/>}/>              
                     <Route path='/cart' render= {(props) => 
                     <ShoppingCart 
-                    products={this.state.products}
+                    products={this.state.products.filter((p)=> p.isInCart)}
                     onIncrement={this.handleIncrement}
-                    onDelete ={this.handleDeltet}
+                    onDelete ={this.handleInCartChange}
                     onReset={this.handleReset} 
                     {...props}
                     />
                     }
                     />
 
-                    <Route path='/about' component={About}/>    
+                   
                     <Route path='/notFound' component={NotFound}/>
-                    <Route path='/contact' component={Contact}/>
-                    <Route path='/home'   component={Home}/>
+                    <Route path='/menu' render={(props) =>
+                    <Menu 
+                      {...props}
+                      products={this.state.products}
+                      onClick ={this.handleInCartChange}
+                    />
+                    }/>
+                                      
                     <Redirect from='/' to='/home'/>
                     <Redirect to='/notFound'/>
                     </Switch>

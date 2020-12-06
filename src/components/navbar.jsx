@@ -7,16 +7,11 @@ const NavBar = props => {
         <a className="navbar-brand" href="#">Navbar</a>
         <div className="collapse navbar-collapse" id="navbarNav">
     <ul className="navbar-nav">
-      <li className="nav-item ">
-        <NavLink className="nav-link" to="/home">Home 
-        </NavLink>
-      </li>
+  
       <li className="nav-item">
-        <NavLink className="nav-link" to="/about">About</NavLink>
+        <NavLink className="nav-link" to="/menu">Menu</NavLink>
       </li>
-      <li className="nav-item">
-        <NavLink className="nav-link " to="/contact">Contact Us</NavLink>
-      </li>
+      
       <li className="nav-item">
         <NavLink className="nav-link " to="/cart">Shopping Cart</NavLink>
       </li>
