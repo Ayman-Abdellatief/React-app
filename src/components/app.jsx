@@ -5,6 +5,7 @@ import {Route , Switch ,Redirect} from  'react-router-dom';
 import ProductDetails from './productDetails';
 import NotFound from './notFound';
 import Menu from './menu';
+import Login from './login';
 
 class App extends Component {
     state = { 
@@ -82,7 +83,7 @@ class App extends Component {
                     />
                     }
                     />
-
+                    <Route path='/login' component={Login}/>
                    
                     <Route path='/notFound' component={NotFound}/>
                     <Route path='/menu' render={(props) =>

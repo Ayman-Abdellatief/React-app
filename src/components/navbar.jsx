@@ -16,6 +16,11 @@ const NavBar = props => {
         <NavLink className="nav-link " to="/cart">Shopping Cart</NavLink>
       </li>
       
+      <li className="nav-item">
+        <NavLink className="nav-link " to="/login">Login</NavLink>
+      </li>
+      
+
     </ul>
   </div>
         <span className="badge badge-primary">
